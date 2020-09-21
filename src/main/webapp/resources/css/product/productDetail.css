@@ -1,0 +1,940 @@
+
+html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        /* css 리셋 */
+
+        html, body {
+            line-height: 1;
+            font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.4px;
+            font-size: 13px;
+        }
+
+        .production-selling-header__price__original {
+            font-size: 13px;
+            color:red;
+            text-decoration: strike-through;
+        }
+
+        .production-selling-header__delivery__type,
+        .selling-option-form-content__form
+        {
+            padding: 13px 0;
+            font-size: 15px;
+            line-height: 21px;
+        }
+
+        .production-selling-header__delivery__fee{
+            font-size: 15px;
+        }
+        .production-selling-header__delivery__disclaimer{
+            font-size: 12px;
+        }
+
+
+        .production-selling-header__review__text {
+            margin-left: 4px;
+            color: #35c5f0;
+            font-size: 13px;
+            vertical-align: 2px;
+        }
+        .production-selling-header__price__discount {
+            display: inline-block;
+            line-height: 1;
+            color: #35c5f0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* 카테고리 정렬*/
+        .production-selling-overview__category ol li,
+        .production-selling-navigation__content ol li,
+        .production-review__paginator li,
+        .production-qna__paginator li,
+        .production-question-feed__paginator li {
+            display: inline;
+        }
+
+        .production-review__paginator li,
+        .production-qna__paginator li{
+            padding: 1px 6px;
+        }
+
+        .production-selling-navigation__content {
+            width: auto;
+        }
+
+        .production-selling-overview__cover-image-wrap,
+        .carousel__list-wrap,
+        .production-selling__detail,
+        .production-selling__detail__content {
+            display: flex;
+        }
+        .production-selling-overview__cover-image-wrap{
+            margin: 0 auto;
+        }
+        
+        /* 컬럼 중앙정렬 */
+        .production-selling-overview__container,
+        .production-selling__detail-wrap{
+
+            margin: 0 200px;
+
+        }
+    
+
+
+        .button {
+                -moz-user-select: -moz-none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                border: 1px solid transparent;
+                background: none;
+                font-family: inherit;
+                font-weight: 700;
+                text-decoration: none;
+                text-align: center;
+                transition: color .1s,background-color .1s,border-color .1s;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+        .button--size-55 {
+            margin-top: 20px;
+            padding: 13px 10px 14px;
+            font-size: 17px;
+            line-height: 26px;
+        }
+
+        
+        
+
+
+        .button--color-blue {
+            background-color: #35c5f0;
+            border-color: #35c5f0;
+            color: #fff;
+        }
+
+        .button--color-blue-inverted {
+            background-color: #fff;
+            border-color: #35c5f0;
+            color: #35c5f0;
+        }
+
+        .production-selling-navigation__content{
+                max-width: 1500px;
+             margin: 0 auto;
+        }
+
+        .production-selling-navigation__item{
+            position: relative;
+            
+            top: 1px;
+            margin: -1px 0 0 -1px;
+            padding: 14px 0 15px;
+            box-sizing: border-box;
+            text-align: center;
+            color: #424242;
+            font-size: 13px;
+            line-height: 20px;
+            font-weight: 700;
+            
+            transition: color .1s;
+        }
+
+            .production-selling-description__information-noti {
+                margin-top: 40px;
+            }
+
+            .production-selling-table {
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 0;
+                font-size: 12px;
+                margin-top: 28px;
+            }
+            table {
+                display: table;
+                border-collapse: separate;
+                border-spacing: 2px;
+                border-color: grey;
+            }
+
+            th {
+                display: table-cell;
+                vertical-align: inherit;
+                font-weight: bold;
+                text-align: -internal-center;
+            }
+            .production-selling-table td, .production-selling-table th {
+                padding: 12px 6px;
+                text-align: left;
+                line-height: 1.38;
+            }
+            .production-selling-section {
+                margin: 0;
+                max-width: 692px;
+            }
+
+            .production-selling-section__header {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                -webkit-justify-content: space-between;
+                -moz-justify-content: space-between;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                -moz-align-items: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+
+            h1 {
+                display: block;
+                font-size: 2em;
+                margin-block-start: 0.67em;
+                margin-block-end: 0.67em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                font-weight: bold;
+            }
+
+            .production-selling-section__right>a, .production-selling-section__right>button {
+                color: #35c5f0;
+                transition: opacity .1s;
+                font: inherit;
+                margin: 0;
+                padding: 0;
+                background: none;
+                border: none;
+            }
+            
+            .production-review-item__container {
+                border-bottom: 1px solid #ededed;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            
+        
+     
+            .production-review-item {
+                position: relative;
+            }
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .production-review-item__writer__img, .production-review-item__writer__info {
+                -webkit-box-flex: 0;
+                -webkit-flex: 0 0 auto;
+                -moz-box-flex: 0;
+                -moz-flex: 0 0 auto;
+                -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+            }
+            .production-review-item__img {
+                width: 52px;
+                height: 52px;
+                border-radius: 4px;
+                background-color: #757575;
+            }
+            .production-review-item__description {
+                font-size: 15px;
+                line-height: 21px;
+                letter-spacing: normal;
+                color: #424242;
+                margin: 10px 0 16px;
+            }
+                    ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        .list-paginator {
+            text-align: center;
+        }
+
+        .list-paginator>li {
+                display: inline-block;
+                vertical-align: bottom;
+                font-size: 0;
+            }
+
+            .list-paginator__page,
+            .production-qna__paginator {
+                min-width: 26px;
+                margin: 0 2px;
+                padding: 5.5px 5px;
+                box-sizing: border-box;
+                border: none;
+                background-color: transparent;
+                border-radius: 4px;
+                font-family: inherit;
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1;
+                color: #424242;
+                transition: background-color .1s,color .1s;
+            }
+
+        /* 메인 이미지 크기 왼쪽 */
+        .production-selling-cover-image__entry__image {
+            width: 558.33px;
+            height: 558.33px;
+            border-radius: 5%;
+        }
+
+        .image {
+            width: 56px;
+            height: 56px;
+            border-radius: 5%;
+        }
+
+        /*버튼 이미지 초기화*/
+        .production-selling-cover-image__list button,
+        .production-selling-header__content button {
+            border: 0px;
+            outline: 0;
+            background-color: white;
+        }
+
+        /*공유 칸 부모*/
+        .production-selling-header__content {
+            position: relative;
+        }
+
+        /*스크랩 및 공유 */
+        .production-selling-header__action {
+            display: flex;
+            position: absolute;
+            right: 1%;
+        }
+
+        .production-selling-overview{
+            margin-top: 20px;
+        }
+        /*카테고리 마진 바텀*/
+        .production-selling-overview__category {
+            margin-bottom: 20px;
+        }
+
+        /* 메인 이미지 오른쪽*/
+        .production-selling-header__title__brand-wrap {
+            margin-bottom: 1rem;
+        }
+        .production-selling-header__title__brand {
+            color: #35c5f0;
+            font-weight: 700;
+            transition: opacity .1s;
+        }
+
+        .production-selling-header__title,
+        .production-selling-header__content {
+            margin-bottom: 20px;
+        }
+
+        .production-selling-header__content p {
+            padding: 1px;
+        }
+
+        .production-selling-header__price__discount span:first-child {
+            font-size: 45px;
+            color: #35c5f0;
+        }
+
+        .production-selling-header__delivery span {
+            display: block;
+            padding-bottom: 3px;
+        }
+
+        .production-selling-overview__content {
+            margin-left: 50px;
+        }
+
+        .production-selling-option-form {
+            margin-top: 30px;
+        }
+
+        .production-selling-header {
+            padding-top: 40px;
+        }
+        
+        .selling-option-select-input__option{
+        	margin-bottom: 5px;
+        }
+
+        /* 메인 이미지 오른쪽 끝*/
+
+        /*상품 css*/
+        .production-selling-description__content img{
+            width: 100%;
+        }
+        .production-selling__detail__content{
+            margin-right: 1rem;
+        }
+         .production-selling-table{
+            
+            margin:5px;
+        }
+        .production-selling-table th{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: rgb(209, 211, 209);
+            color: rgb(0, 0, 0);
+        }
+        .production-selling-table td{
+            border: 1px solid #ddd;
+             padding: 8px;
+        }
+
+        /*상품 리뷰*/
+
+.react-modal__content-wrap {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    z-index: 504;
+    opacity: 0;
+    box-sizing: border-box;
+    transform: translateY(-50px);
+    -webkit-overflow-scrolling: touch;
+}        
+.review-modal__modal {
+    width: 760px;
+}
+.react-modal__content {
+    margin: 20px auto;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+
+
+        /*문의 리뷰*/
+
+div {
+    display: block;
+}
+.react-modal.open {
+    background-color: rgba(0,0,0,.5);
+}
+    .react-modal {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100000;
+        background-color: transparent;
+        top: 60px;
+    }
+
+html, body {
+    line-height: 1;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.4px;
+    font-size: 13px;
+}
+
+
+.open>.react-modal__content-wrap {
+    opacity: 1;
+    transform: none;
+}
+
+
+.react-modal__content-wrap {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    z-index: 504;
+    opacity: 0;
+    box-sizing: border-box;
+    transform: translateY(-50px);
+    -webkit-overflow-scrolling: touch;
+   
+}
+
+.product-question.react-modal__content {
+    position: relative;
+    width: 624px;
+    min-height: 687px;
+    padding: 40px;
+}
+
+.react-modal__content {
+    margin: 20px auto;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.product-question__wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.product-question__wrap__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.product-question__wrap__title {
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #292929;
+    margin-bottom: 30px;
+}
+
+.product-question__wrap__type-select {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: stretch;
+    -moz-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+.product-question__wrap__sub-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #292929;
+    margin-bottom: 16px;
+}
+.product-question__wrap__sub-title--error {
+    color: #f06060;
+}
+.product-question__wrap__option-select {
+    margin-bottom: 30px;
+}
+.product-question.react-modal__content {
+    position: relative;
+    width: 624px;
+    min-height: 687px;
+    padding: 40px;
+}
+
+.product-question__wrap__option-select__input {
+    margin-top: 10px;
+}
+.select-input {
+    position: relative;
+}
+.input-group {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+.select-input__icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    font-size: 0;
+    cursor: default;
+    color: rgba(0,0,0,.3);
+    pointer-events: none;
+}
+.product-question__wrap__option-select__input.select-input>.form-control.empty, .product-question__wrap__option-select__input.select-input>.form-control>option:disabled {
+    color: #424242;
+}
+.select-input.errored .select-input__icon {
+    color: #f77;
+}
+.product-question__checkbox {
+    margin-top: 16px;
+}
+.product-question__wrap__sub-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #292929;
+    margin-bottom: 16px;
+}
+
+.product-question .form-check-label, .product-question .form-control, .product-question__page .form-check-label, .product-question__page .form-control {
+    font-size: 15px;
+}
+.checkbox-input>.form-check-label {
+    margin-bottom: 0;
+}
+.select-input.input-group>.form-control {
+    width: 100%;
+}
+
+.textarea.form-control {
+    resize: none;
+    line-height: 20px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+element.style {
+    height: 40px;
+}
+
+.product-question__wrap__explain {
+    margin-top: 30px;
+    font-size: 13px;
+    line-height: 1.46;
+    color: #757575;
+}
+.product-question__wrap__buttons {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.product-question__modal{
+    display: none;
+}
+
+.product-question__wrap__type-select__box--select{
+    color: #fff;
+    background-color: #35c5f0;
+    font-weight: 700;
+    border-color: #35c5f0;
+}
+
+.product-question__wrap__type-select__box:hover{
+    color: #fff;
+    background-color: #35c5f0;
+    font-weight: 700;
+    border-color: #35c5f0;
+}
+
+        
+
+   
+
+        /*리뷰 css 끝*/
+        
+
+        /* 메인 이미지 크기 끝*/
+
+        /* 스티키 설정 */
+        .production-selling-navigation-wrap {
+            background-color: #fafafa;
+            z-index: 10;
+            position: sticky;
+            top: 0px;
+        }
+
+        .prodproductionuction-selling-navigation__list {
+            margin-left: 50px;
+            padding: 20px;
+        }
+        .prodproductionuction-selling-navigation__list li{
+            margin-right: 35px;
+            height: 100%;
+        }
+      
+        .prodproductionuction-selling-navigation__list li a {
+
+            text-align: center;
+            text-decoration: none;
+        }
+        .prodproductionuction-selling-navigation__list li a:hover{
+         
+            border-bottom: solid 3px ;
+       }
+
+        /*상품 마진*/
+        .production-selling-content {
+            margin-right: 200px;
+        }
+
+        .production-review-item__writer__info {
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-top: 30px;
+
+		}
+
+.review-modal{
+    padding: 20px;
+}
+
+
+ .review-modal__modal__wrap{ 
+     background-color: white;
+     width: 100%;
+     display: none;
+     z-index: 11;
+     margin-bottom: 50px;
+} 
+
+.react-modal--center-div{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width:100%;
+    height: 100vh; 
+    position: fixed; 
+    z-index: 11;
+    background-color: rgba(5, 5, 5, 0.5);
+    display: none;
+}
+
+/* 별점 */
+.rating-group {
+  display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.rating__icon {
+  pointer-events: none;
+}
+
+/* hide radio inputs */
+.rating__input {
+ position: absolute !important;
+ left: -9999px !important;
+}
+
+/* hide 'none' input from screenreaders */
+.rating__input--none {
+  display: none
+}
+
+/* set icon padding and size */
+.rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+
+/* set default star color */
+.rating__icon--star {
+  color: orange;
+}
+
+/* if any input is checked, make its following siblings grey */
+.rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+
+/* make hovered input's following siblings grey on hover */
+.rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+.selected {
+            background-color: #35c5f0;
+            color: #fff;
+            text-decoration: none;
+        }
+

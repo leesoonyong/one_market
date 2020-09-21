@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+<!-- 상품 --> 
+	<select id="productVO" parameterType="String" resultType="productVO">
+		select * from product where p_num = #{pNum}
+	</select>
+	<!-- 상품 리뷰 --> 
+	<select id="productReviewVO" parameterType="String" resultType="productReviewVO">
+		select * from (select rownum num, n.* from (select * from product_review WHERE p_num = #{pNum} order by regdate desc) n
+		)where num BETWEEN 1 and 5
+	</select>
+	
+	<!-- 상품 등록  --> 
+	<insert id="insertReview" parameterType="productReviewVO">
+		insert into product_Review values(#{pNum},PRODUCT_REVIEW_SEQ.nextval,#{rating},#{pName,jdbcType=VARCHAR},#{id},sysdate,#{photoImage1,jdbcType=VARCHAR},#{title},#{content},#{photoImage2,jdbcType=VARCHAR},#{nickName})
+	</insert>
+	
+	<!-- 리뷰 게시물 총 겟수 --> 
+	<select id="getTotalCount" parameterType="String" resultType="Integer">
+		select COUNT(*) from product_review WHERE p_num = #{pNum}
+	</select>
+	
+	<select id="getreviewList" parameterType="Map" resultType="productReviewVO">
+		select * from (select rownum num, n.* from (select * from product_review WHERE p_num = #{pNum} order by regdate desc) n
+		)where num BETWEEN #{begin} and #{end}
+	</select>
+
+	<!-- qna 리뷰 글 등록 -->
+	<select id="inserQnaReview" parameterType="productQnaVO">
+		insert into product_qna (SEQ,
+		COMMENT_PROC,
+		IDX,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		LEV,
+		P_PROC,
+		P_NAME,
+		BUY_INFO,
+		ID) values
+		(#{seq},#{commentProc},PRODUCT_QNA_SEQ.nextval
+		,#{title},#{content},sysdate,0,'처리중',#{pName}
+		,'미구매',#{id})
+	</select>
+	
+	
+	<!-- 문의글등록 -->
+	<select id="productqnavoList" parameterType="String" resultType="productQnaVO">
+		select * from (SELECT ROWNUM AS recNum,
+		lvl, SEQ,
+		COMMENT_PROC,
+		IDX,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		LEV,
+		P_PROC,
+		P_NAME,
+		BUY_INFO,
+		ID from (select level as lvl, SEQ,
+		COMMENT_PROC,
+		IDX,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		LEV,
+		P_PROC,
+		P_NAME,
+		BUY_INFO,
+		ID from product_qna WHERE seq = #{pNum} start with lev=0
+		CONNECT by prior idx = lev
+		order siblings by idx desc))where recNum between 1 and 10
+	</select>
+	
+	<!-- 문의글 카운터 -->
+	<select id="getQnaTotalCount" resultType="Integer" parameterType="String">
+		select count(*) from product_qna where seq = #{pNum}	
+	</select>
+	
+	<select id="ProductQna" parameterType="Map" resultType="productQnaVO" >
+		select * from (SELECT ROWNUM AS recNum,
+		lvl, SEQ,
+		COMMENT_PROC,
+		IDX,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		LEV,
+		P_PROC,
+		P_NAME,
+		BUY_INFO,
+		ID from (select level as lvl, SEQ,
+		COMMENT_PROC,
+		IDX,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		LEV,
+		P_PROC,
+		P_NAME,
+		BUY_INFO,
+		ID from product_qna WHERE seq = #{pNum} start with lev=0
+		CONNECT by prior idx = lev
+		order siblings by idx desc))where recNum between #{begin} and #{end}
+	</select>
+	
+	<select id="ProductList" resultType="productVO" parameterType="Map">
+		select * from (select rownum num, n.* from (select * from product) n )where num BETWEEN #{begin} and #{end}
+	</select>
+	<select id="ProductListSerch" resultType="productVO" parameterType="Map">
+	 select * from (select rownum num, n.* from (select * from product WHERE p_name LIKE '%${topSearchKeyword}%' 
+	 or brand_name like '%${topSearchKeyword}%' or promotion like '%${topSearchKeyword}%' or description like '%${topSearchKeyword}%' 
+	 or UPPER_CATEGORY like '%${topSearchKeyword}%' 
+	 or SUB_CATEGORY like '%${topSearchKeyword}%'  
+	 or SUB_CATEGORY2 like '%${topSearchKeyword}%' 
+	 ) n )where num BETWEEN #{begin} and #{end}
+	</select>
+	<select id="ProductListCount" resultType="Integer">
+		select COUNT(*) from product
+	</select>
+	
+	<select id="ProductListSerchCount" resultType="Integer" parameterType="String">
+	 select COUNT(*) from product WHERE p_name LIKE '%' || #{topSearchKeyword} || '%'
+	 or brand_name like '%' || #{topSearchKeyword} || '%' or promotion like '%' || #{topSearchKeyword} || '%' 
+	 or description like '%' || #{topSearchKeyword} || '%' or UPPER_CATEGORY like '%' || #{topSearchKeyword} || '%' or SUB_CATEGORY like '%' || #{topSearchKeyword} || '%' 
+	 or SUB_CATEGORY2 like '%' || #{topSearchKeyword} || '%'
+	</select>
+	
+
+</mapper>

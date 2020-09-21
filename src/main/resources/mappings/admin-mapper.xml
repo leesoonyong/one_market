@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="adminDAO">
+	
+  	<insert id="insertProduct" parameterType="admin">
+  		INSERT INTO PRODUCT
+		(P_NUM, PRICE, SALEPRICE, PASSWORD, UPPER_CATEGORY, SUB_CATEGORY,
+		 STOCK, ID, DESCRIPTION, P_MODEL, BRAND_NAME,
+		 P_NAME,SHIPPINGFEE, SUB_CATEGORY2, PROMOTION, DISCOUNTRATE,THUMNAIL_IMG
+		)
+		VALUES  ((SELECT NVL(MAX(P_NUM),0)+1 FROM PRODUCT), #{price}, #{salePrice},'123', #{upperCategory}, #{subCategory},
+				#{stock}, 'id', #{description}, '자전거', #{brandName},
+				#{pName}, #{shippingfee}, #{subCategory2},#{promotion}, #{discountRate},#{thumnailImg}
+		)
+  	</insert>
+  </mapper>
+  	

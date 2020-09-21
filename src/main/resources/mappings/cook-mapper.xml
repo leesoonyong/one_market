@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cookMapper">
+ 
+   <insert id="insertCook" parameterType="cook">
+    	insert into comm_cook
+		VALUES((cook_sequence.NEXTVAL)+1,#{title},#{content}
+		,sysdate, #{category}, #{image},#{cooktime},0,0,'ID',#{nickName})
+  	</insert>
+	
+	<select id="selectOne" parameterType="String" resultType="cook">
+		   SELECT * FROM COMM_COOK WHERE COM_SEQ = #{comSeq}
+	</select>
+	<select id="selectAll" resultType="cook" parameterType="hashmap">
+		SELECT *
+		FROM (SELECT ROWNUM
+		AS RECNUM,
+		COM_SEQ,
+		TITLE,
+        CONTENT,
+		REGDATE,
+		HIT,
+		LIKES,
+        IMAGE,
+        NICK_NAME
+		FROM (SELECT COM_SEQ,
+        TITLE,
+		CONTENT,
+        REGDATE,
+		HIT,
+		NICK_NAME,
+		LIKES,
+        IMAGE
+		FROM COMM_COOK
+		ORDER BY COM_SEQ DESC))
+		WHERE RECNUM BETWEEN (#{section}-1)* 90 +
+		(#{pageNum}-1)* 9 + 1
+		AND (#{section} - 1)*90 + #{pageNum}*9 ORDER BY
+		COM_SEQ DESC
+	</select>
+	
+	<update id="update" parameterType="cook">
+		UPDATE COMM_COOK
+		SET
+		TITLE = #{title},
+		ID = 'id',
+		CONTENT = #{content},
+		REGDATE = sysdate,
+		HIT = #{hit},
+		LIKES= #{likes},
+		NICK_NAME = #{nickName}
+		WHERE com_seq = #{comSeq}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE COMM_COOK WHERE COM_SEQ
+		= #{comSeq}
+	</delete>
+	
+	<select id="selectAllCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM COMM_COOK
+	</select>
+	
+	<update id="boardHitsUpdate" parameterType="int">
+		UPDATE COMM_COOK
+		SET HIT = HIT + 1
+		WHERE COM_SEQ = #{comSeq}
+	</update>
+	
+	  	<!-- 댓글 전체 조회 -->
+  	<select id="allComment" parameterType="Integer" resultType="commReplyVO">
+  		SELECT *
+  		FROM COOK_REPLY
+  		WHERE COM_SEQ = #{comSeq}
+  		ORDER BY IDX DESC
+  	</select>
+
+  	<!-- 댓글 입력 -->
+  	<insert id="insertComment" parameterType="commReplyVO">
+  		INSERT INTO COOK_REPLY
+  			(ID, LEV, IDX, CONTENT, REGDATE, NICK_NAME, COM_SEQ)
+  		VALUES (#{id}, 0, COMM_REPLY_SEQ.NEXTVAL, #{content}, sysdate, #{nickName}, #{comSeq})
+  	</insert>
+
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="commReplyVO">
+		UPDATE COOK_REPLY
+		SET CONTENT = #{content}, REGDATE = sysdate
+		WHERE COM_SEQ = #{comSeq} AND IDX = #{idx}
+	</update>
+	
+</mapper>

@@ -1,0 +1,125 @@
+
+body{
+   font-family: Arial, Helvetica, sans-serif;
+   margin:0;
+    padding: 20px;
+    border-radius: 2px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #F2F2F2;
+}
+
+
+header{
+    padding: 30px;
+}
+
+header h1{
+    text-align: center;
+    font-size: 40px;
+    color:#000000;
+    margin: 1.5 0px;
+}
+
+h2{
+    color:#000000;
+    margin: 1.5 0px;
+}
+
+
+.row1{
+    margin-left: 10%;
+    position:absolute; 
+    height:auto; 
+    width:90%; 
+    padding-left: 20px;
+    margin: auto 0 ;
+    left: 3.3%;  
+}
+
+
+
+.left-column{
+    float: left;
+    width: 78%;
+   
+   
+}
+.right-column{
+    width: 20%;
+    left: 79.5%;
+    float: right;
+    height:99%; 
+    position:absolute;
+    
+    
+}
+.product{
+    position: sticky;
+    position:-webkit-sticky;
+    margin:10px;
+    top: 2%;
+}
+
+.card-1 p {
+    margin: 7px 0;
+    font-size: 17px;
+}
+
+
+.card{
+    padding:20px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    
+}
+
+
+.card-2{
+	text-align: center;
+}
+
+.right-column .card img{
+    margin-bottom: 10px;
+}
+
+/* 미리보기 삭제 */
+ #image_preview {
+    display:none;
+}
+
+
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-top: 1px solid #eee;
+}
+input[type="button"],input[type="submit"]{
+    background-color: #46ffff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

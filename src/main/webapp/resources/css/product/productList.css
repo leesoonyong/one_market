@@ -1,0 +1,655 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    font-family: Lato, -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, HelveticaNeue, "Malgun Gothic", sans-serif;
+    color: #444;
+    list-style: none;
+    text-decoration: none;
+
+}
+
+.menu {
+    width: 300px;
+    border-radius: 8px;
+    overFlow: hidden;
+    font-size: 20px;
+
+}
+
+.amenu {
+    height: 15px;
+
+}
+
+.item {
+    overflow: hidden;
+
+}
+
+.btn {
+    display: block;
+    padding: 8px 10px;
+    background: #35c5f0;
+    color: white;
+    position: relative;
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 20px;
+    background: #35c5f0;
+    left: 20px;
+    bottom: -7px;
+    transform: rotate(45deg);
+}
+
+.btn i {
+    margin-right: 15px;
+
+}
+
+
+.smenu {
+    height: 200px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+    max-height: 0;
+
+}
+
+.smenu a {
+    display: block;
+    padding: 1px 16px;
+    font-size: 16px;
+    margin: 3px 0;
+    position: relative;
+    margin: 10px;
+}
+
+.smenu a:before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background: #35c5f0;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.smenu a:hover:before {
+    opacity: 1;
+}
+
+.item:target .smenu {
+    max-height: 10em;
+}
+
+.ssmenu {
+    background-color: white;
+    display: none;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: -40px;
+    z-index: 9900;
+
+}
+
+.middle {
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+}
+
+.card1 {
+    margin-right: 50px;
+    width: 20%;
+    height: 800px;
+    position: sticky;
+    top: 60px;
+    "
+
+
+}
+
+.card2 {
+    padding: 10px;
+    width: 80%;
+}
+
+
+.item-wrap ul,
+.item-cont {
+    display: flex;
+}
+
+.item-list {
+    width: 25%;
+}
+
+#filter-sort {
+    position: relative;
+    margin: 20px 0 30px;
+}
+
+header,
+footer,
+main,
+hgroup,
+section,
+article,
+aside,
+details,
+figure,
+figcaption,
+nav,
+menu,
+summary {
+    display: block;
+}
+
+body,
+input,
+textarea,
+select,
+button,
+table {
+    font-family: Lato, -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, HelveticaNeue, "Malgun Gothic", sans-serif;
+    color: #444;
+}
+
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gui-btn,
+[class^="gui-input"],
+[class*="gui-input"],
+.gui-check,
+.gui-radio,
+.gui-toggle,
+.gui-dropdown,
+.gui-tab,
+.gui-nav,
+.ctrl-btn,
+.pg-ctrl-box,
+#sky-wrap,
+.prd-item,
+.advantage {
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+::selection {
+    background-color: #cce1fe;
+    color: #333;
+}
+
+:-moz-placeholder,
+::placeholder {
+
+    color: #aaa;
+    opacity: 1;
+
+}
+
+.radio-tab .gui-radio:first-child {
+    padding-left: 0;
+}
+
+.radio-tab .gui-radio {
+    float: left;
+    padding: 3px 12px;
+    padding-left: 12px;
+}
+
+[class^="gui-"],
+[class*="gui-"] {
+    font-family: Lato, "Malgun Gothic", helvetica;
+}
+
+.radio-tab .gui-radio label::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -12px;
+    display: block;
+    width: 1px;
+    height: 12px;
+    border-radius: 0;
+    background: #d9d9d9;
+}
+
+.radio-tab .gui-radio:first-child label::before {
+    display: none;
+}
+
+.pc .radio-tab .gui-radio label::before {
+    top: 7px;
+}
+
+.gui-radio label i::after {
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+}
+
+.radio-tab .gui-radio input:checked + label i {
+    display: block;
+    top: 2px;
+    left: -3px;
+    width: 18px;
+    height: 18px;
+    border: 0;
+    background: url(../../images/sprite_common.png) no-repeat -50px -100px !important;
+}
+
+:-moz-placeholder,
+::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+.gui-check label > i,
+.gui-radio label > i,
+.gui-toggle label > i {
+
+    overflow: hidden;
+    position: absolute;
+
+}
+
+.gui-btn *,
+[class^="gui-input"] *,
+[class*="gui-input"] *,
+.gui-check *,
+.gui-radio *,
+.gui-toggle *,
+.gui-dropdown *,
+.gui-tab *,
+.gui-nav *,
+.ctrl-btn *,
+.pg-ctrl-box *,
+#sky-wrap *,
+.prd-item *,
+.advantage * {
+    box-sizing: border-box;
+}
+
+.gui-check input:checked + label,
+.gui-check input.checked + label,
+.gui-radio input:checked + label,
+.gui-radio input.checked + label,
+.gui-toggle input:checked + label,
+.gui-toggle input.checked + label {
+    font-weight: 700;
+    color: #111;
+}
+
+.radio-tab::after,
+.gui-tab ul::after,
+.pg-ctrl-box::after,
+.md-wrap_typeB .md-header::after,
+.flex-wrap::after,
+.clearfix::after,
+.swiper-wrapper::after,
+.doc-wrap::after,
+.prd-list ul::after,
+.modal-layer header::after,
+#global-category .category-layer-brand li .inner::after,
+.prd-item.horizon::after,
+.horizon .prd-item::after,
+.prd-item::after,
+.prd-info .price-info::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.prd-list ul {
+    margin: 0 auto;
+    width: 100%;
+}
+
+ul,
+ol,
+menu {
+    list-style: none;
+}
+
+.prd-list li {
+    float: left;
+    width: 200px;
+    min-height: 300px;
+    flex-basis: initial;
+    margin: 0 60px;
+
+}
+
+.prd-item {
+    display: block;
+    letter-spacing: -0.04em;
+    vertical-align: top;
+    transition: 0.2s ease-in-out;
+}
+
+a:link,
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.gui-btn,
+[class^="gui-input"],
+[class*="gui-input"],
+.gui-check,
+.gui-radio,
+.gui-toggle,
+.gui-dropdown,
+.gui-tab,
+.gui-nav,
+.ctrl-btn,
+.pg-ctrl-box,
+#sky-wrap,
+.prd-item,
+.advantage {
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: Lato, -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, HelveticaNeue, "Malgun Gothic", sans-serif;
+}
+
+a {
+    color: #444;
+    cursor: pointer;
+}
+
+.prd-item {
+    letter-spacing: -0.04em;
+}
+
+.prd-item .prd-img {
+    display: block;
+    position: relative;
+    background-color: #f4f4f4;
+}
+
+.prd-list .prd-img {
+    height: 226px;
+}
+
+img,
+fieldset,
+iframe,
+frame {
+    border: none;
+}
+
+.prd-item .prd-img img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.prd-item .prd-img::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid rgba(153, 153, 153, 0.1);
+}
+
+.prd-info {
+    padding-top: .71429em;
+}
+
+.prd-info .prd-name {
+    overflow: hidden;
+    height: 2.71429em;
+    line-height: 1.36;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+strike {
+    font-weight: 400;
+    color: red;
+    font-size: 14px;
+}
+
+.set-price {
+    margin-bottom: 6px;
+    display: inline-block;
+    margin-top: 6px;
+}
+
+.prd-info .price-info {
+    position: relative;
+    white-space: nowrap;
+}
+
+.prd-item .user-side {
+    position: relative;
+    min-height: 24px;
+    line-height: 24px;
+    padding-bottom: .57143em;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: content-box;
+}
+
+.prd-item .selling-count {
+    color: #666;
+}
+
+.prd-item .user-side {
+    line-height: 24px;
+}
+
+.prd-item {
+    letter-spacing: -0.04em;
+}
+
+.advantage {
+    overflow: hidden;
+    padding-top: 8px;
+}
+
+#pageNavigation {
+    margin: 100px 0 50px;
+}
+
+.paging {
+    box-sizing: content-box;
+    display: inline;
+    line-height: normal;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+
+.blind {
+    position: absolute;
+    overflow: hidden;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    font: 0/0 m;
+    color: transparent;
+}
+
+.paging * {
+    box-sizing: content-box;
+}
+
+.paging a,
+.paging strong {
+    display: inline-block;
+    min-width: 20px;
+    height: 28px;
+    line-height: 26px;
+    padding: 1px 5px;
+    margin: 0 2px;
+    *margin: 0;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.paging strong {
+    background: #cbdb2a;
+    color: #111;
+}
+
+.paging a,
+.paging strong {
+    display: inline-block;
+    min-width: 20px;
+    height: 28px;
+    line-height: 26px;
+    padding: 1px 5px;
+    margin: 0 2px;
+    *margin: 0;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.paging .go-next span {
+    background-position: -125px -300px;
+}
+
+.paging [class^="go-"] span,
+.paging [class*="go-"] span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -12px 0 0 -12px;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+[class^="sprite-"],
+[class*="sprite-"],
+.close-btn,
+.plus-tip > i::after,
+[data-type="clearValue"],
+.gui-input_date::after,
+.ui-datepicker-header .ui-corner-all span,
+.gui-dropdown > [class*="arrow"],
+.paging [class^="go-"] span,
+.paging [class*="go-"] span,
+.link-more::after,
+.badge-deal,
+.prd-item .my-wish,
+.prd-item .my-cart,
+.prd-item .prd-img .toggle-cart,
+.prd-item .prd-img .toggle-zzim,
+.prd-info mark,
+.advantage [class^="benefit-"]::before,
+.advantage [class*="benefit-"]::before,
+.ui-tooltip::before {
+    font: 0/0 m;
+    color: transparent;
+    content: '';
+}
+
+[class^="sprite-"],
+[class*="sprite-"],
+.close-btn,
+.plus-tip > i::after,
+[data-type="clearValue"],
+.gui-input_date::after,
+.ui-datepicker-header .ui-corner-all span,
+.gui-dropdown > [class*="arrow"],
+.paging [class^="go-"] span,
+.paging [class*="go-"] span,
+.link-more::after,
+.badge-deal,
+.prd-item .my-wish,
+.prd-item .my-cart,
+.prd-item .prd-img .toggle-cart,
+.prd-item .prd-img .toggle-zzim,
+.prd-info mark,
+.advantage [class^="benefit-"]::before,
+.advantage [class*="benefit-"]::before,
+.ui-tooltip::before {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+[class^="sprite-"],
+[class*="sprite-"],
+.close-btn,
+.plus-tip > i::after,
+[data-type="clearValue"],
+.gui-input_date::after,
+.ui-datepicker-header .ui-corner-all span,
+.gui-dropdown > [class*="arrow"],
+.paging [class^="go-"] span,
+.paging [class*="go-"] span,
+.link-more::after,
+.badge-deal,
+.prd-item .my-wish,
+.prd-item .my-cart,
+.prd-item .prd-img .toggle-cart,
+.prd-item .prd-img .toggle-zzim,
+.prd-info mark,
+.advantage [class^="benefit-"]::before,
+.advantage [class*="benefit-"]::before,
+.ui-tooltip::before,
+.tip-arr,
+[class*="ic-cate_"]::after,
+.advantage .ico-only-mobile {
+    background: url("../../../common/images/sprite_common.png") no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+}
+
+.list-paginator__page,
+.production-qna__paginator {
+    min-width: 26px;
+    margin: 0 2px;
+    padding: 5.5px 5px;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: #424242;
+    transition: background-color .1s, color .1s;
+}
+
+.selected {
+    background-color: #35c5f0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.paging-ul {
+    text-align: center;
+}
+
+.paging-ul li {
+    display: inline;
+}

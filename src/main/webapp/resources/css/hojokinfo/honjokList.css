@@ -1,0 +1,108 @@
+body, html
+{
+	background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+	height:100%;
+}
+
+.layout{
+	float:left;
+	padding:5%;    
+}
+
+@media (max-width: 1485px){
+	.div1{
+		display: none; 
+	}
+}
+.div1{
+	background-color: #0000ff;
+    width:10%; 
+	height: 100%;
+	position: fixed;
+    left:       0;
+    bottom:     0;
+}
+.div2{
+	width: 100%;
+}
+
+.single-blog{
+	box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.2);
+	padding: 10px;
+	margin-top:30px;
+	background-color: #ffffff;
+}
+.single-blog img{
+		width:100%	
+}
+
+.blog-meta{
+	font-size:14px;
+	margin-bottom:2px;
+}
+.likes{
+	float:right;
+	font-size:12px;
+	color:cornflowerblue;
+}
+.number{
+	margin-top:10px;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+.number a{
+	color:red;
+	display:block;
+	width:32px;
+	height:32px;
+}
+
+.wrap {
+    padding: 20px 50px;
+}
+
+body {
+    background: #ffffff;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 400px;
+    padding: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 600px;
+    height: 400px;
+}
+
+.advice-guide-chapter-content__content {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 0px;
+    -moz-box-flex: 1;
+    -moz-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    min-width: 0;
+    margin-left: 16px;
+    font-size: 18px;
+}
+
+.advice-guide-chapter-content__author,
+.advice-guide-chapter-content__footer {
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #757575;
+}

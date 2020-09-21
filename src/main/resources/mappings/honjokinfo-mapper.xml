@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="honjokInfoMapper">
+
+
+
+	<!-- 글등록 -->
+	<insert id="insert" parameterType="CommInfoVO">
+		{call declare begin
+			INSERT INTO COMMUNITY (COM_SEQ, TITLE, ID, CONTENT, REGDATE, HIT, LIKES, TYPE, NICK_NAME)
+	            VALUES((COMMMUNITY_SEQ.NEXTVAL) + 1, #{title}, #{id}, #{content}, SYSDATE, '0', '0', '1', #{nickName});
+			
+			INSERT INTO COMM_INFO
+				VALUES((SELECT NVL(MAX(com_seq), 0) FROM COMMUNITY),0,#{adr},#{menu},#{tel},#{placeName},#{categoryName});
+   		 	END
+	     }
+	</insert>
+	
+	
+	<!-- 메뉴사진 업로드  -->
+	<insert id="menuUplodat" parameterType="UploadVO">
+			INSERT INTO UPLOAD(COM_SEQ,Up_img_name,type)
+		VALUES((SELECT NVL(MAX(com_seq), 0) FROM COMMUNITY),#{upImgName},'1')
+	</insert>
+	
+	
+	
+	<!-- 리뷰 insert -->
+	<insert id="insertReview" parameterType="commReplyVO">
+		INSERT INTO COMM_REPLY
+		VALUES(#{id},0,COMM_REPLY_SEQ.NEXTVAL,#{content},sysdate,#{nickName},#{comSeq})
+	</insert>
+	
+	
+	<!-- 리뷰 이미지 insert  -->
+	<insert id="insertReviewImage" parameterType="replyUploadVO">
+		INSERT INTO REPLY_UPLOAD(COM_SEQ,PARENT_NUMBER,UP_IMG_NAME,IDX)
+		VALUES(null,null,#{upImgName},REPLY_UPLOAD_SEQ.NEXTVAL)
+	</insert>
+	
+	<insert id="inserLikesId" parameterType="Map">
+		insert into Likes 
+    	VALUES(#{id},1,#{comSeq})
+	</insert>
+
+	<!-- insert end -->
+
+	<!-- 커뮤니티 페이징 처리후 -->
+	
+	
+	<select id="selectSearch" resultType="CommunityVO"
+		parameterType="Map">
+		SELECT * FROM ( SELECT ROWNUM
+		AS RECNUM,
+		COM_SEQ,
+		TITLE,
+		ID,
+		CONTENT,
+		REGDATE,
+		HIT,
+		LIKES,
+		NICK_NAME,
+		TYPE FROM(SELECT COM_SEQ,
+		TITLE,
+		ID,
+		CONTENT,
+		REGDATE,
+		HIT,
+		NICK_NAME,
+		LIKES,TYPE FROM COMMUNITY WHERE type =
+		'1' and ${searchFiled} like '%${searchValue}%' order by com_seq DESC))
+		where RECNUM BETWEEN (#{section}-1)* 90 +
+		(#{pageNum}-1)* 9 + 1
+		AND (#{section} - 1)*90 + #{pageNum}*9 order by
+		com_seq DESC
+	</select>
+	
+	
+	
+	
+	<select id="selectAll" resultType="CommunityVO"
+		parameterType="Map">
+		SELECT * FROM ( SELECT ROWNUM
+		AS RECNUM,
+		COM_SEQ,
+		TITLE,
+		ID,
+		CONTENT,
+		REGDATE,
+		HIT,
+		LIKES,
+		NICK_NAME,
+		TYPE FROM(SELECT COM_SEQ,
+		TITLE,
+		ID,
+		CONTENT,
+		REGDATE,
+		HIT,
+		NICK_NAME,
+		LIKES,TYPE FROM COMMUNITY WHERE type =
+		'1' order by com_seq DESC))
+		where RECNUM BETWEEN (#{section}-1)* 90 +
+		(#{pageNum}-1)* 9 + 1
+		AND (#{section} - 1)*90 + #{pageNum}*9 order by
+		com_seq DESC
+	</select>
+
+	<!-- 커뮤니티 인포 페이징 처리후 -->
+	<select id="selectCommInfoVO" resultType="CommInfoVO"
+		parameterType="Map">
+		SELECT * FROM (SELECT ROWNUM
+		AS RECNUM,
+		COM_SEQ,
+		SUM_STAR,
+		ADR,
+		MENU,
+		tel,
+		place_name,
+		category_name
+		FROM(SELECT * FROM COMM_INFO order by com_seq DESC))
+		where RECNUM BETWEEN
+		(#{section}-1)* 90 + (#{pageNum}-1)* 9 + 1
+		AND (#{section} - 1)*90 +
+		#{pageNum}*6 order by com_seq DESC
+	</select>
+
+	<select id="selectAllCount" resultType="Integer">
+		select count(*)from
+		community where type = '1'
+	</select>
+	<select id="selectAllCountSerach" resultType="Integer">
+		select count(*)from
+		community WHERE type = '1' and ${searchFiled} like '%${searchValue}%'
+	</select>
+
+
+
+	<!-- 테이블 하나 가져오기 커퓨니티+info테이블 -->
+	<select id="select" resultType="CommInfoVO"
+		parameterType="String">
+		select C.* ,I.* from COMMUNITY C, COMM_INFO I
+		WHERE C.COM_SEQ = i.com_seq AND i.com_seq = #{comSeq}
+	</select>
+	
+	<!-- 파일 이이미지 가져오기 -->
+	
+	<select id="getFileName" parameterType="String" resultType="UploadVO">
+		 select * from upload where com_seq = #{comSeq} and type = '1'
+	</select>
+	
+	<!-- 댓글 가져오기  -->
+	<select id="getReview" parameterType="String" resultType="commReplyVO">
+	select * from comm_reply where com_seq = #{comSeq} order by
+		idx DESC
+	</select>
+	
+	
+	<!-- 댓글 이미지 가져오기  -->
+	<select id="getReviewImg" parameterType="String" resultType="replyUploadVO">
+		select * from reply_upload where parent_number = #{idx} 
+	</select>
+
+	
+	
+	<!-- 베스트 게시물 5개 가져오기 -->
+	<select id="selectBest5" resultType="CommunityVO">
+		select * from (select * from community where type = '1' order by likes desc)community where ROWNUM BETWEEN 1 and 5
+	</select>
+
+
+	<!-- select end -->
+
+
+<!-- 업데이트 시작  -->
+
+	<update id="hitUpdate" parameterType="String">
+	UPDATE community SET HIT = HIT+ 1 where com_seq = #{comSeq}
+	</update>
+
+
+	<update id="uptate" parameterType="CommInfoVO">
+	{call
+		declare
+		begin
+		UPDATE COMMUNITY
+		SET
+		TITLE = #{title},
+		CONTENT = #{content},
+		REGDATE = SYSDATE
+		WHERE com_seq = #{comSeq};
+		UPDATE COMM_INFO
+		SET 
+		ADR = #{adr},
+		MENU = #{menu},
+		TEL = #{tel},
+		PLACE_NAME = #{placeName},
+		CATEGORY_NAME = #{categoryName}
+		WHERE com_seq = #{comSeq};
+		END
+		}
+	</update>
+
+
+	<update id="likesUp" parameterType="String">
+		update COMMUNITY set  likes = (select likes + 1 from COMMUNITY WHERE COM_SEQ = #{comSeq}) WHERE COM_SEQ = #{comSeq}
+	</update>
+	
+	<update id="updateLikesDown" parameterType="String">
+		update COMMUNITY set  likes = (select likes - 1 from COMMUNITY WHERE COM_SEQ = #{comSeq}) WHERE COM_SEQ = #{comSeq}
+	</update>
+
+	<update id="updateReview" parameterType="Map">
+		update reply_upload set
+		parent_number = (SELECT NVL(MAX(idx), 0) FROM COMM_REPLY)
+		, com_seq = #{comSeq} where up_img_name = #{file}
+	</update>
+<!-- 업데이트 끝 -->
+
+<!-- DEl 시작 -->
+
+	<!-- 글삭제 -->
+	<delete id="delete" parameterType="String">
+		{call
+		declare
+		begin
+
+		DELETE COMM_INFO WHERE COM_SEQ = #{comSeq};
+		DELETE COMMUNITY WHERE COM_SEQ =
+		#{comSeq};
+
+		end
+		}
+	</delete>
+	
+	
+	<delete id="delReviewUpload" parameterType="String">
+		DELETE reply_upload WHERE up_img_name = #{fileName}
+	</delete>
+<!-- DEL 끝 -->
+
+
+	<!-- <select id="getBoardList" parameterType="board" resultType="board"> 
+		SELECT * FROM BOARD WHERE 1=1 <if test="searchCondition == 'TITLE' "> AND 
+		TITLE LIKE '%'|| #{searchKeyword} ||'%' </if> <if test="searchCondition == 
+		'CONTENT' "> AND CONTENT LIKE '%'|| #{searchKeyword} ||'%' </if> ORDER BY 
+		SEQ DESC </select> <select id="getBoard" parameterType="board" resultType="board"> 
+		SELECT * FROM BOARD WHERE SEQ = #{seq} </select> <update id="updateBoard" 
+		parameterType="board"> UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content} 
+		WHERE SEQ = #{seq} </update> <delete id="deleteBoard" parameterType="board"> 
+		DELETE FROM BOARD WHERE SEQ = #{seq} </delete> -->
+</mapper>
+

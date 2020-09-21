@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qnaMapper">
+	<insert id="insertQna" parameterType="Qna">
+	insert into qna
+		VALUES((cook_sequence.NEXTVAL)+1,#{title},#{content}
+		,sysdate, 0,#{nickName})
+	</insert>
+	
+	<select id="selectOne" parameterType="String" resultType="Qna">
+		   SELECT * FROM QNA WHERE COM_SEQ = #{comSeq}
+	</select>
+	
+	<select id="selectAll" parameterType="hashmap" resultType="Qna">
+		SELECT *
+	    FROM (SELECT ROWNUM
+		AS RECNUM,
+		COM_SEQ,
+		TITLE,
+        CONTENT,
+		REGDATE,
+        NICK_NAME
+		FROM (SELECT COM_SEQ,
+        TITLE,
+		CONTENT,
+        REGDATE,
+		HIT,
+		NICK_NAME
+		FROM QNA
+		ORDER BY COM_SEQ DESC))
+		WHERE RECNUM BETWEEN (#{section}-1)* 90 +
+		(#{pageNum}-1)* 9 + 1
+		AND (#{section} - 1)*90 + #{pageNum}*9 ORDER BY
+		COM_SEQ DESC
+	</select>
+	
+	<update id="update" parameterType="Qna">
+		UPDATE QNA
+		SET
+		TITLE = #{title},
+		CONTENT = #{content},
+		REGDATE = sysdate,
+		HIT = #{hit},
+		NICK_NAME = #{nickName}
+		WHERE com_seq = #{comSeq}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE QNA WHERE COM_SEQ
+		= #{comSeq}
+	</delete>
+	
+	<select id="selectAllCount" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM QNA 
+	</select>
+	
+	<update id="boardHitsUpdate" parameterType="int">
+		UPDATE QNA
+		SET HIT = HIT + 1
+		WHERE COM_SEQ = #{comSeq}
+	</update>
+	
+</mapper>

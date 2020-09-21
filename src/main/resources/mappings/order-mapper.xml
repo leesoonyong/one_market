@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderDAO">
+	<update id="updateCartCount" parameterType="java.util.Map">
+		UPDATE BASKET SET P_CNT=#{pCnt} WHERE P_NUM=#{pNum} and ID=#{id}
+	</update>
+	
+	<select id="getProductCartData" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT P_NUM, P.THUMNAIL_IMG, P.P_NAME, P.PRICE,P.SALEPRICE,P.SHIPPINGFEE,
+       		   P.STOCK, P.DISCOUNTRATE, B.P_CNT, P.BRAND_NAME, U.ID
+		FROM PRODUCT P JOIN BASKET B USING(P_NUM) JOIN USERS U ON U.ID = B.ID
+		WHERE B.ID = #{id} AND P_NUM= #{pNum}
+	</select>
+	
+	<select id="getUserData" parameterType="java.util.Map" resultType="user">
+		SELECT * FROM USERS WHERE ID=#{id}
+	</select>
+	<insert id="insertOrderInfo" parameterType="java.util.Map">
+		INSERT INTO ORDERS VALUES (
+		    (SELECT NVL(MAX(O_NUM),0)+1 FROM ORDERS), #{dprice}, 1, #{id}, sysdate,
+		    #{name}, #{phone}, #{adrCode}, #{adr1}, #{adr2},
+		    #{fprice} 
+		)
+	</insert>
+	<insert id="insertOrderDetail" parameterType="java.util.Map">
+		<selectKey keyProperty="oNum" resultType="Long" order="BEFORE">
+			SELECT MAX(O_NUM) FROM ORDERS WHERE ID=#{id}
+		</selectKey>
+		
+		INSERT INTO ORDERDETAILS VALUES (
+		    #{oNum},
+		    #{pNum},
+		    #{pCnt},
+		    #{price}
+		)
+	</insert>
+	<update id="updateProductStock" parameterType="java.util.Map">
+		UPDATE PRODUCT SET STOCK = (STOCK - #{pCnt}) WHERE P_NUM=#{pNum}
+	</update>
+	<delete id="deleteCartList" parameterType="java.util.Map">
+		DELETE FROM BASKET WHERE ID =#{id} AND P_NUM=#{pNum}
+	</delete>
+	
+	
+	
+</mapper>

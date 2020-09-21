@@ -1,0 +1,418 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700");
+    
+.bg_gray{
+    background: #f7f7f7;
+} 
+body, html {
+    position: relative;
+    z-index: 1;
+    min-height: 100%;
+}    
+body, input{
+    color: #222;
+    font-family: 'Noto Sans KR", sans-serif';
+    font-size: 14px;
+    line-height: 1;    
+}
+    
+html, body {
+    height: 100%;
+}    
+#wrap_all {
+    width: 580px;
+    margin: 0 auto;
+    position: relative;
+}   
+/*네비 CSS*/    
+#skip_navi {
+    height: 0;
+}    
+#skip_navi a {
+    position: absolute;
+    top: -9999px;
+    z-index: 100;
+    width: 100%;
+    height: 30px;
+    background: #eee;
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+}    
+#wrap_all #header {
+    min-height: 0;
+    margin-top: 0;
+    border-bottom: none;
+    width: 100%;
+    background: none;
+} 
+
+#header {
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 102;
+    -webkit-box-sizing: border-box;
+}    
+
+#wrap_all #header h1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-left: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    text-align: center;
+    margin-bottom: 45px;
+} 
+    
+#header h1 {
+    font-size: 27.7px;
+    color: transparent;
+    cursor: pointer;
+}
+input, select, img {
+    border: 0;
+    border-radius: 0;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+
+    
+    
+/* 회원가입 CSS*/   
+#container {
+    position: relative;
+    min-height: 100%;
+    -webkit-box-sizing: border-box;
+} 
+#contents::after {
+    content: '';
+    display: block;
+    clear: both;
+}   
+#wrap_all #contents {
+    width: 100%;
+    margin-bottom: 40px;
+} 
+#contents {
+    position: relative;
+    width: 1140px;
+    min-height: 100%;
+    margin: 0 auto 100px;
+    -webkit-box-sizing: border-box;
+}   
+
+    
+.join_content .join_form {
+    margin-top: 35px;
+    padding: 0 30px;
+    border: 1px solid #bcbcbc;
+    border-top: 4px solid #009ee3;
+    background: #fff;
+}   
+.join_content .join_form h2 {
+    margin: 40px 0 30px;
+    color: #009ee3;
+    font-size: 30px;
+    text-align: center;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+}    
+    
+.join_content .join_form form {
+    display: block;
+    text-align: left;
+}    
+section,nav,footer,header{
+    display: block;    
+}   
+.join_content .join_form h3.item_tit {
+    color: #222222;
+    font-size: 22px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+}    
+h1, h2, h3, h4, h5, h6, strong {
+    font-weight: normal;
+} 
+body, p, ul, ol, li, dl, dt, dd, form, table, th, td, fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre {
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+ul, ol, li {
+    list-style: none;
+}    
+.join_content .customer_info > li:first-child::before {
+    display: none;
+}    
+.join_content .customer_info > li::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #bcbcbc;
+}
+.join_content .customer_info > li {
+    margin: 25px 0 50px;
+    position: relative;
+}    
+.join_content input[type="text"], .join_content input[type="password"], .customer_info button, .join_content select {
+    line-height: 50px;
+    height: 50px;
+}    
+input[type="text"], input[type="password"] {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 0;
+    background-color: #fff;
+    font-size: 14px;
+    color: #222;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}    
+input {
+    margin:0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:border-box;
+    vertical-align: middle;
+    position: relative;
+    
+}    
+em{
+    font-style:normal; 
+    
+    }    
+#password{
+    margin:6px 0;
+}
+#name{
+    margin:6px 0;     
+}    
+.join_content .customer_info .select_box {
+    position: relative;
+    margin: 6px 0;
+    padding-right: 177px;
+}    
+.join_content .customer_info .select_box div {
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+}    
+.join_content .customer_info .select_box input {
+    border: 0 !important;
+}    
+.join_content .customer_info .select_box select {
+    width: 173px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 52px;
+    height: 52px;
+    background: #fff url('/app/resources/img/main/bg_select.png') no-repeat right 23px;
+    font-size: 16px;
+}  
+select {
+    min-width: 94px;
+    color: #666;
+    margin: 0;
+    padding: 0 40px 0 18px;
+    border: 1px solid #d9d9d9;
+    border-radius: 0;
+    letter-spacing: -1px;
+}    
+select option {
+    font-size: 13px;
+}    
+  
+#phone{
+    position: relative;
+    margin:6px 0;    
+}    
+    
+.join_content .join_form .sec2 {
+    margin: 40px -30px 0;
+    padding: 40px 30px;
+    border-top: 1px solid #e9e9e9;
+}
+    
+.join_content .customer_info .input_box {
+    position: relative;
+    margin: 6px 0;
+    padding-right: 153px;
+}
+.join_content .customer_info .input_box .zipcode {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 148px;
+    border: 1px solid #a9a9a9;
+    color: #666666;
+    font-size: 16px;
+    line-height: 50px;
+    height: 50px;
+}
+.btn_base {
+    position: relative;
+    display: inline-block;
+    min-width: 100px;
+    border-radius: 0;
+    background-color: #fff;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}    
+#sample6_address{
+    margin: 6px 0;    
+}    
+.join_content .customer_info li h4 {
+    color: #222;
+    font-size: 20px;
+    font-family: "Noto Sans KR";
+}
+.red{
+    color:#fa2b49;
+}
+.join_content .customer_info li a{
+    float: right;
+    color: #666666
+}
+.join_content .customer_info li > .radio_wrap{
+    margin-top: 15px;
+    padding: 14px 30px;
+    border: 1px solid #d9d9d9; 
+}  
+.radio_wrap .side{
+    overflow:hidden;
+    height:1%;
+}    
+.underline {
+    text-decoration: underline;
+    line-height: 2px;
+    font-size: 14px;
+    
+}    
+.radiocss input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+}    
+.radiocss {
+    position: relative;
+    display: inline-block;
+    min-width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}    
+.radio_wrap.side input[type="radio"] + label:last-child {
+    margin-right: 0;
+}
+.radio_wrap.side input[type="radio"] + label {
+    margin-right: 40px;
+}  
+.customer_info li > .radio_wrap label {
+    font-size: 16px;
+    color: #666666;
+}
+.radiocss input[type="radio"] + label {
+    cursor: pointer;
+    display: inline-block;
+    min-width: 20px;
+    height: 20px;
+    color: #666;
+    font-size: 14px;
+    background: url('/app/resources/img/main/bg_inputform.png') no-repeat -40px -40px;
+        background-size: auto;
+    background-size: 200px 200px;
+}
+label {
+    vertical-align: middle;
+}    
+.radiocss input[type="radio"] + label em {
+    display: inline-block;
+    margin-left: 25px;
+    padding-right: 2px;
+    height: 20px;
+    line-height: 20px;
+    white-space: nowrap;
+    background: #fff;
+}    
+.radiocss *, .checkcss * {
+    cursor: pointer;
+}    
+#radio_wrap1{
+    margin-top: 10px;
+}    
+#radio_wrap2{
+    margin-top: 10px;    
+}    
+.customer_info li > .radio_wrap .radiocss:nth-child(2) {
+    margin-left: 30px;
+}
+.radio_wrap.side input[type="radio"] + label:last-child {
+    margin-right: 0;
+}
+.radiocss input[type="radio"]:checked + label {
+    background-position: 0 -40px;
+}    
+.join_content .full button {
+    width: calc(50% - 3px);
+    line-height: 68px;
+    height: 68px;
+    font-size: 24px;
+    margin-top: 40px;
+}   
+.btn_base.bigact {
+    min-width: 220px;
+}   
+.btn_base.darkgray {
+    border: 1px solid #666;
+    background-color: #666;
+    color: #fff;
+}
+.btn_base.blue {
+    border: 1px solid #009ee3 !important;
+    background-color: #009ee3 !important;
+    color: #fff;
+}    
+button {
+    margin: 0;
+    background: 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+}    
+#emailCheck{
+    border: none;    
+}    
+.checkFont{
+    font-family: "Noto Sans KR";
+    font-size: 18px;
+    font-weight: 300;
+    margin: 6px 0;
+}    
+.join_content .customer_info li > .block {
+    border:none;
+    padding: 10px 0 0 0;
+}
+
+    
+
+

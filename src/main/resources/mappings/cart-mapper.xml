@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartDAO">
+
+	<insert id="addCartProduct" parameterType="java.util.Map">
+		INSERT INTO BASKET VALUES
+		     (
+		     	(SELECT NVL(MAX(B_SEQ),0)+1 FROM BASKET), #{pNum} , #{pCnt} , #{id}  
+	         )
+	</insert>
+	<select id="getCartCount" parameterType="String" resultType="Int">
+		SELECT COUNT(*) FROM BASKET WHERE ID = #{id}
+	</select>
+	
+	<select id="getSameCart" parameterType="java.util.Map" resultType="Int">
+		SELECT COUNT(*) P_CNT FROM BASKET WHERE P_NUM = #{pNum} AND ID = #{memId}
+	</select>
+	
+	<select id="getCartList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT P_NUM, P.THUMNAIL_IMG, P.P_NAME, P.PRICE,P.SALEPRICE,
+			   P.STOCK, P.DISCOUNTRATE,P.SHIPPINGFEE,B.P_CNT, U.ID
+    	FROM PRODUCT P JOIN BASKET B USING(P_NUM) JOIN USERS U 
+   	 	ON U.ID = B.ID
+   		WHERE B.ID = #{id}
+	</select>
+	<delete id="cartDelete" parameterType="CartVO">
+		DELETE BASKET WHERE P_NUM = #{pNum} AND ID = #{id}
+	</delete>
+</mapper>

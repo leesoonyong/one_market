@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myPageDAO">
+	
+	<!-- 게시물 조회 -->
+	<!-- 인테리어 게시물 조회 -->
+	<select id="interiorBoard" parameterType="commInteriorVO" resultType="commInteriorVO">
+ 		SELECT C.COM_SEQ, C.TITLE, C.NICK_NAME, C.CONTENT, C.REGDATE, C.HIT, C.LIKES
+			FROM COMMUNITY C, COMM_INTERIOR I
+			WHERE C.COM_SEQ = I.COM_SEQ
+			AND C.ID = #{id}
+	</select>
+	
+	<!-- 혼족정보 게시물 조회 -->
+	<select id="infoBoard" parameterType="commInteriorVO" resultType="commInteriorVO">
+ 		SELECT *
+			FROM COMMUNITY C, COMM_INFO I
+			WHERE C.COM_SEQ = I.COM_SEQ
+			AND C.ID = #{id}
+	</select>
+	
+	<!-- 레시피 게시물 조회 -->
+	<select id="cookBoard" parameterType="commInteriorVO" resultType="commInteriorVO">
+ 		SELECT *
+			FROM COMM_COOK
+			WHERE ID = #{id}
+	</select>
+	
+	<!-- 주문내역 조회 -->
+	<select id="orderSelect" parameterType="orderVO" resultType="orderVO">
+		
+	</select>
+	
+	<!-- 회원정보-->
+	<!-- 회원정보 조회 -->
+	<select id="userSelect" parameterType="user" resultType="user">
+		SELECT *
+		FROM USERS
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="user">
+		UPDATE USERS
+		SET PASSWORD = #{password ,jdbcType=VARCHAR}, EMAIL = #{email ,jdbcType=VARCHAR}, ADR_CODE = #{adrCode ,jdbcType=VARCHAR},
+		ADR1 = #{adr1 ,jdbcType=VARCHAR}, ADR2 = #{adr2 ,jdbcType=VARCHAR}, PHONE = #{phone ,jdbcType=VARCHAR}, REGDATE = sysdate,
+		NICK_NAME = #{nickName ,jdbcType=VARCHAR}, AGE = #{age}
+		WHERE ID = #{id}
+	</update>
+</mapper>

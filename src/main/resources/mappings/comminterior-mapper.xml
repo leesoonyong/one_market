@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="commInteriorDAO">
+  		
+  		<!-- 게시판 글쓰기 입력 -->
+	 	<insert id="insertComm" parameterType="commInteriorVO">
+	 		{ call
+	 		declare
+	 		begin
+	 		INSERT INTO COMMUNITY
+	 		(COM_SEQ, TITLE, ID, NICK_NAME, CONTENT, REGDATE, HIT, TYPE)
+	 		VALUES ((COMMMUNITY_SEQ.NEXTVAL) + 1, #{title}, #{id}, #{nickName},
+	 			#{content}, SYSDATE, 0, 2);
+	 		INSERT INTO COMM_INTERIOR (COM_SEQ)
+	 		VALUES ((select NVL(MAX(com_seq) ,0) FROM COMMUNITY));
+	 		END
+	 		}
+	 	</insert>
+	 	
+	  	<!-- 게시판 글 수정 -->
+	  	<update id="updateComm" parameterType="commInteriorVO">
+		  	{ call
+		 		declare
+		 		begin
+		 		UPDATE COMMUNITY
+		 		SET TITLE = #{title}, CONTENT = #{content}, REGDATE = SYSDATE
+		 		WHERE COM_SEQ = #{comSeq};
+		 		END
+		 	}
+		</update>
+	
+		<!-- 게시판 조회수 증가 -->
+		<update id="boardHitsUpdate" parameterType="Int">
+			UPDATE COMMUNITY
+			SET HIT = HIT + 1
+			WHERE COM_SEQ = #{comSeq}
+		</update>
+	
+		  	<!-- <update id="deleteArticle" parameterType="CommInteriorVO">
+		 		{ call
+		 		declare
+		 		DELETE
+		 		FROM COMMUNITY C, COMM_INTERIOR I
+		 		WHERE COM_SEQ
+		 		DELETE
+		 		FROM COMMU
+		 		END
+		 		}
+		</update> -->
+	
+		<!-- 게시판 글 삭제 -->
+		<delete id="deleteComm" parameterType="commInteriorVO">
+			{ call
+		 		declare
+		 		begin
+		 		DELETE FROM COMMUNITY
+		 		WHERE COM_SEQ = #{comSeq};
+		 		DELETE FROM COMM_INTERIOR
+		 		WHERE COM_SEQ = #{comSeq};
+		 		END
+		 	}
+		</delete>
+	
+		<!-- 게시판 전체 글 갯수 -->
+		<select id="selectAllCount" resultType="Integer">
+			SELECT COUNT(*)
+			FROM COMMUNITY C, COMM_INTERIOR I
+			WHERE C.COM_SEQ = I.COM_SEQ
+			AND TYPE = '2'
+		</select>
+		
+		<!-- 게시판 전체 목록 조회 -->
+		<select id="interiorAll" resultType="commInteriorVO" parameterType="hashmap">
+			SELECT *
+			FROM ( SELECT ROWNUM
+			AS RECNUM,
+			COM_SEQ,
+			TITLE,
+			ID,
+			NICK_NAME,
+			CONTENT,
+			TO_CHAR(SYSDATE, 'yyyy-mm-dd') as regdate,
+			HIT,
+			LIKES
+			FROM(SELECT C.COM_SEQ,
+			C.TITLE,
+			C.ID,
+			C.CONTENT,
+			TO_CHAR(C.REGDATE, 'yyyy-mm-dd') as regdate,
+			C.HIT,
+			C.NICK_NAME,
+			C.LIKES
+			FROM COMMUNITY C, COMM_INTERIOR I
+			WHERE C.COM_SEQ = I.COM_SEQ AND TYPE = '2' ORDER BY C.COM_SEQ DESC))
+			WHERE RECNUM BETWEEN (#{section}-1)* 90 +
+			(#{pageNum}-1)* 9 + 1
+			AND (#{section} - 1)*90 + #{pageNum}*9 ORDER BY
+			COM_SEQ DESC
+		</select>
+  
+  		<!-- 게시판 번호로 조회 -->
+		<select id="getInteriorOne" parameterType="commInteriorVO" resultType="commInteriorVO">
+			SELECT C.COM_SEQ, C.TITLE, C.NICK_NAME, C.CONTENT, C.REGDATE, C.HIT, C.LIKES, C.ID
+			FROM COMMUNITY C, COMM_INTERIOR I
+			WHERE C.COM_SEQ = I.COM_SEQ
+			AND C.COM_SEQ = #{comSeq}
+			ORDER BY C.COM_SEQ , I.COM_SEQ
+		</select>
+	
+		<!-- 좋아요 누름 -->
+		<update id="likesCheck" parameterType="String">
+	 		UPDATE COMMUNITY
+	 		SET  LIKES = (SELECT LIKES + 1 FROM COMMUNITY WHERE COM_SEQ = #{comSeq})
+	 		WHERE COM_SEQ = #{comSeq}
+		</update>
+	  
+	  	<!-- 좋아요 취소 -->
+	 	<update id="likesCancel" parameterType="String">
+		 	UPDATE COMMUNITY
+		 	SET  LIKES = (SELECT LIKES - 1 FROM COMMUNITY WHERE COM_SEQ = #{comSeq})
+		 	WHERE COM_SEQ = #{comSeq}
+	  	</update>
+	  	
+	  	<!-- 해당 게시물 좋아요 수 조회 -->
+	  	<select id="likesCount" resultType="Integer" parameterType="int">
+	  		SELECT COUNT(LIKES)
+	  		FROM LIKES
+	  		WHERE COM_SEQ = #{comSeq}
+	  	</select>
+	  	
+	  	<!-- 댓글 전체 조회 -->
+	  	<select id="allComment" parameterType="Integer" resultType="commReplyVO">
+	  		SELECT *
+	  		FROM COMM_REPLY
+	  		WHERE COM_SEQ = #{comSeq}
+	  		ORDER BY IDX DESC
+	  	</select>
+
+	  	<!-- 댓글 입력 -->
+	  	<insert id="insertComment" parameterType="commReplyVO">
+	  		INSERT INTO COMM_REPLY
+	  			(ID, LEV, IDX, CONTENT, REGDATE, NICK_NAME, COM_SEQ)
+	  		VALUES (#{id}, 0, COMM_REPLY_SEQ.NEXTVAL, #{content}, sysdate, #{nickName}, #{comSeq})
+	  	</insert>
+
+		<!-- 댓글 수정 -->
+		<update id="updateComment" parameterType="commReplyVO">
+			UPDATE COMM_REPLY
+			SET CONTENT = #{content}, REGDATE = sysdate
+			WHERE COM_SEQ = #{comSeq} AND IDX = #{idx}
+		</update>
+  
+  		<!-- 댓글 삭제 -->
+  		<!-- <delete id="deleteComment" parameterType="">
+  			
+  		</delete> -->
+  		
+  		<!-- 댓글 전체 갯수 -->
+  		<select id="reAllCount" resultType="Integer">
+			SELECT COUNT(*)
+			FROM COMM_REPLY
+			WHERE COM_SEQ AND IDX
+		</select>
+  </mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<typeAliases>
+		<!--<typeAlias alias="board" type="com.honjok.app"/>-->
+		<typeAlias alias="user" type="com.honjok.app.vo.UserVO"/>
+		<typeAlias alias="admin" type="com.honjok.app.vo.AdminVO"/>
+		<typeAlias alias="CommunityVO" type="com.honjok.app.vo.CommunityVO"/>
+		<typeAlias alias="commInteriorVO" type="com.honjok.app.vo.CommInteriorVO"/>
+		<typeAlias alias="cook" type="com.honjok.app.vo.CookVO"/>
+		<typeAlias alias="CommInfoVO" type="com.honjok.app.vo.CommInfoVO"/>
+		<typeAlias alias="CartVO" type="com.honjok.app.vo.CartVO"/>
+		<typeAlias alias="UploadVO" type="com.honjok.app.vo.UploadVO"/>
+		<typeAlias alias="commReplyVO" type="com.honjok.app.vo.CommReplyVO"/>
+		<typeAlias alias="replyUploadVO" type="com.honjok.app.vo.ReplyUploadVO"/>
+		<typeAlias alias="cart" type="com.honjok.app.vo.CartVO"/>
+		<typeAlias alias="likesVO" type="com.honjok.app.vo.LikesVO"/>
+		<typeAlias alias="productVO" type="com.honjok.app.vo.ProductVO"/>
+		<typeAlias alias="productReviewVO" type="com.honjok.app.vo.ProductReviewVO"/>
+		<typeAlias alias="productQnaVO" type="com.honjok.app.vo.ProductQnaVO"/>
+		<typeAlias alias="orderVO" type="com.honjok.app.vo.OrderVO"/>
+		<typeAlias alias="qna" type="com.honjok.app.vo.Qna"/>
+	</typeAliases>
+  <!-- SQL 작성파일인 매퍼 파일 위치 지정 -->
+ <mappers>
+    <mapper resource="mappings/user-mapper.xml"/>
+	<mapper resource="mappings/honjokinfo-mapper.xml"/>
+	<mapper resource="mappings/comminterior-mapper.xml"/>
+	<mapper resource="mappings/cook-mapper.xml"/>
+	<mapper resource="mappings/admin-mapper.xml"/>
+	<mapper resource="mappings/main-mapper.xml"/>
+	<mapper resource="mappings/cart-mapper.xml"/>
+	<mapper resource="mappings/product-mapper.xml"/>
+	<mapper resource="mappings/mypage-mapper.xml"/>
+	<mapper resource="mappings/order-mapper.xml"/>
+	<mapper resource="mappings/qna-mapper.xml"/>
+ </mappers>
+ 
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
